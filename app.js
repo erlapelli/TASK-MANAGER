@@ -12,6 +12,9 @@ app.use(express.static('./public'));
 app.use(express.json());
 
 // routes
+app.get('/', (req, res) => {
+  res.send('Task Manager');
+});
 
 app.use('/api/v1/tasks', tasks);
 
@@ -22,6 +25,7 @@ const port = process.env.PORT || 3000;
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
+    console.log("db connected")
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
